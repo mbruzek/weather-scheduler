@@ -18,10 +18,10 @@ compute the route and post the ride.
 
 **Budget**: Zero dollars.
 
-Read the [DESIGN.md](blob/master/DESIGN.md) document for more details and
+Read the [DESIGN.md](DESIGN.md) document for more details and
 phases of the application development.
 
-Read the [RESEARCH.md](blob/master/RESEARCH.md) document for links, references,
+Read the [RESEARCH.md](RESEARCH.md) document for links, references,
 and information on the technologies used in the application.
 
 # Usage
