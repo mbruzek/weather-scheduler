@@ -30,11 +30,13 @@ from datetime import timedelta
 from jinja2 import Template
 
 
-CONTEXT = 'Additional context key=value pairs for the template'
+CONTEXT = 'Additional comma separated key=value pairs to use as context'
 DAY = 'The day of the week to use weather data for: \n' \
       'monday|tuesday|wednesday|thursday|friday|saturday|sunday'
 DEFAULT_LOCATION = 'MN/Rochester'
-DEFAULT_URL = 'http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BS{{ wind_direction}}.gif'  # noqa
+DEFAULT_URL = 'http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BS{{ wind_direction }}.gif'  # noqa
+DESCRIPTION = 'Request weather forecast data from the Internet and render ' \
+              'an event template.'
 DEBUG = False
 KEY = 'The weather underground key to use when making the API requests'
 LOCATION = 'The location to query for the weather forecast'
@@ -46,8 +48,8 @@ SPEED = {'a_plus_speed': 21.0,
          'd_speed': 15,
          'ez_speed': 13}
 TIME = 'The time of the event in "HH:MM AM|PM" format'
-URL = 'The url to the image to use for the image of the event. Hint you can' \
-      'use template variables in the url'
+URL = 'The url to the image to use for the image of the event. Hint you can ' \
+      'use context variables in the url'
 WEEK = {'monday': 0,
         'tuesday': 1,
         'wednesday': 2,
@@ -59,32 +61,29 @@ WEEK = {'monday': 0,
 
 def command_line():
     '''The function to parse the arguments from the command line.'''
-    description = 'Gather weather data from the Internet and render templates.'
-    parser = argparse.ArgumentParser(description=description)
-    parser.add_argument('-c', '--context',
-                        help='{0} [{1}]'.format(CONTEXT, None))
-    parser.add_argument('-d', '--day', default='monday',
-                        help='{0} [{1}]'.format(DAY, 'monday'))
-    parser.add_argument('-k', '--key',
-                        help='{0} [{1}]'.format(KEY, None))
-    parser.add_argument('-l', '--location', default=DEFAULT_LOCATION,
-                        help='{0} [{1}]'.format(LOCATION, None))
-    parser.add_argument('-t', '--time', default='6:00 PM',
-                        help='{0} [{1}]'.format(TIME, '6:00 PM'))
-    parser.add_argument('-u', '--url', default=DEFAULT_URL,
-                        help='{0} [{1}]'.format(URL, DEFAULT_URL))
-    arguments = parser.parse_args()
-
     try:
+        parser = argparse.ArgumentParser(description=DESCRIPTION)
+        parser.add_argument('-c', '--context',
+                            help='{0} [{1}]'.format(CONTEXT, None))
+        parser.add_argument('-d', '--day', default='monday',
+                            help='{0} [{1}]'.format(DAY, 'monday'))
+        parser.add_argument('-k', '--key',
+                            help='{0} [{1}]'.format(KEY, None))
+        parser.add_argument('-l', '--location', default=DEFAULT_LOCATION,
+                            help='{0} [{1}]'.format(LOCATION, None))
+        parser.add_argument('-t', '--time', default='6:00 PM',
+                            help='{0} [{1}]'.format(TIME, '6:00 PM'))
+        parser.add_argument('-u', '--url',
+                            help='{0}'.format(URL))
         arguments = parser.parse_args()
         # Parse the time HH:MM AM|PM from the command line.
         time = datetime.datetime.strptime(arguments.time, '%I:%M %p').time()
-        print(schedule(split_kv_string(arguments.context),
-                       arguments.day,
-                       arguments.key,
-                       arguments.location,
-                       time,
-                       arguments.url))
+        print(schedule_event(split_kv_string(arguments.context),
+                             arguments.day,
+                             arguments.key,
+                             arguments.location,
+                             time,
+                             arguments.url))
     except:
         print(traceback.print_exc())
         exit(1)
@@ -102,12 +101,12 @@ def interactive():
         # Parse the time HH:MM AM|PM from user input.
         options['time'] = datetime.datetime.strptime(time, '%I:%M %p').time()
         options['url'] = prompt(URL, DEFAULT_URL)
-        print(schedule(split_kv_string(options['context']),
-                       options['day'],
-                       options['key'],
-                       options['location'],
-                       options['time'],
-                       options['url']))
+        print(schedule_event(split_kv_string(options['context']),
+                             options['day'],
+                             options['key'],
+                             options['location'],
+                             options['time'],
+                             options['url']))
     except (KeyboardInterrupt, SystemExit) as e:
         print('\n\nUser has quit, exiting program.')
         exit(2)
@@ -282,7 +281,7 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
     return context
 
 
-def schedule(context, day, key, location, time, url):
+def schedule_event(context, day, key, location, time, url):
     '''Use the key to retrieve the weather information for the specified day
     and return the appropriate template using the context.'''
     # Get the datetime object for the target day and time.
