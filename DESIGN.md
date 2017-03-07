@@ -15,54 +15,73 @@ can be posted to a forum or pasted in an email.
 
 # Requirements
 
-The tool needs to output text for the ride. In general the ride postings look
-like this:
+The tool needs to output text for the event. In general the event postings need
+the following information:
 
-Day of week, date, Location of start, time.
+Location of event, start time
 
-Common information about the groups and depart times.
+Weather forcast for the time of the event.
 
-Forecast temperature, wind direction, wind speed. Sunset time.
+Temperature, wind direction, chance of precipitation.
 
-Optional comments to bring lights or be safe on trails
+Sunset time to get an idea of how much daylight is available.
 
+Optional comment.
+
+Image for the event.
+
+Closing statement or footer.
 
 ## Templates
 
-The easiest way to output formatted text. Use jinja2 templates to make sections
-of the templates replaceable.
+Templates are the easiest way to output structured text from an application.
+This application uses Jinja2 templates to replace sections of the templates
+when the program runs.
 
-It looks like templates based on the day of week is needed. The algorithm can
-load the appropriate template and replace the weather variables.
+All the templates are stored in the `templates` directory and are named for the
+day of the week with lowercase letters. The program can load the appropriate
+template and replace the variables (mostly from the weather data) before
+printing the final text to the standard output. You can customize each day's
+templates with different messages so each day has its own message.
 
-monday.txt
-wednesday.txt
+```
+templates/monday
+templates/wednesday
+```
 
-## Phase 1
+### Phase 1
 
-Research the weather APIs to see which one provides what we need. Keep links
+[X] Research the weather APIs to see which one provides what we need. Keep links
 to documentation in RESEARCH.md so when the APIs break or more functionality is
 needed the information is available.
 
-## Phase 2
+* Using the astronomy API for sunset time, and the hourly10day API for the
+hourly data.
 
-Implement simple requests to gather the weather information.
+### Phase 2
 
-## Phase 3
+[X] Implement simple requests to gather the weather information.
 
-Make the system work from the command line with replaceable credentials that
+* Using the requests Python package to issue simple HTTP GET commands.
+* Parsing the JSON is the hardest part, saved JSON in the `examples` directory.
+
+### Phase 3
+
+[X] Make the system work from the command line with replaceable credentials that
 are not hard coded.
 
-## Phase 4
+* Both command line and interactive are supported.
+
+### Phase 4
 
 Look into where to run this tool, likely a Raspberry Pi or something cheap
 and low powered that can run for a long time unattended.
 
-## Phase 5
+### Phase 5
 
 Schedule the tool to run every night and post information to the group/forum or
 email.
 
-## Phase6
+### Phase6
 
 Release to production, maintain the tool by fixing bugs and adding features.
