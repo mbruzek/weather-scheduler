@@ -1,0 +1,29 @@
+RASC Wednesday night ride
+
+Ride starts from Bicycle Sports
+1400 5th Place NW,
+Rochester, MN
+
+First group leaves at {{ event_time }} sharp! All groups will be leaving in two minute intervals after {{ event_time }}.
+
+{{ event_day }}, {{ forecast_time_date }} hourly forecast for {{ location }}:
+
+{{ condition }} with a temperature of {{ temp_english }} F / {{ temp_metric }} C.
+
+Wind from the {{ wind_direction }} with a speed of {{ wind_speed }} mph.
+
+Sunset is {{ sunset_time }}, that is {{ daylight }} minutes of daylight.
+{% if daylight > 0 %}
+A+ group rides at {{ a_plus_speed }} mph, covering {{ a_plus_distance }} miles before sunset.
+A group rides at {{ a_speed }} mph, covering {{ a_distance }} miles before sunset.
+B group rides at {{ b_speed }} mph, covering {{ b_distance }} miles before sunset.
+C group rides at {{ c_speed }} mph, covering {{ c_distance }} miles before sunset.
+D group rides at {{ d_speed }} mph, covering {{ d_distance }} miles before sunset.
+EZ riders go {{ ez_speed }} mph, covering {{ ez_distance }} miles before sunset.
+{% endif %}
+
+{{ comment }}
+
+{{ image }}
+
+{{ footer }}
