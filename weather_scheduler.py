@@ -73,17 +73,14 @@ def command_line():
                             help='{0} [{1}]'.format(LOCATION, None))
         parser.add_argument('-t', '--time', default='6:00 PM',
                             help='{0} [{1}]'.format(TIME, '6:00 PM'))
-        parser.add_argument('-u', '--url',
-                            help='{0}'.format(URL))
         arguments = parser.parse_args()
         # Parse the time HH:MM AM|PM from the command line.
-        time = datetime.datetime.strptime(arguments.time, '%I:%M %p').time()
+        start = datetime.datetime.strptime(arguments.time, '%I:%M %p').time()
         print(schedule_event(split_kv_string(arguments.context),
                              arguments.day,
                              arguments.key,
                              arguments.location,
-                             time,
-                             arguments.url))
+                             start))
     except:
         print(traceback.print_exc())
         exit(1)
@@ -100,13 +97,11 @@ def interactive():
         time = prompt(TIME, '6:00 PM')
         # Parse the time HH:MM AM|PM from user input.
         options['time'] = datetime.datetime.strptime(time, '%I:%M %p').time()
-        options['url'] = prompt(URL, DEFAULT_URL)
         print(schedule_event(split_kv_string(options['context']),
                              options['day'],
                              options['key'],
                              options['location'],
-                             options['time'],
-                             options['url']))
+                             options['time']))
     except (KeyboardInterrupt, SystemExit) as e:
         print('\n\nUser has quit, exiting program.')
         exit(2)
@@ -281,7 +276,7 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
     return context
 
 
-def schedule_event(context, day, key, location, time, url):
+def schedule_event(context, day, key, location, time):
     '''Use the key to retrieve the weather information for the specified day
     and return the appropriate template using the context.'''
     # Get the datetime object for the target day and time.
@@ -295,9 +290,6 @@ def schedule_event(context, day, key, location, time, url):
     # Update the context with the target date and API data.
     context = update_context(context, target, astronomy_data, hourly10day_data)
     context['location'] = location
-    url_template = Template(url)
-    # Use the context values to render the image url.
-    context['image'] = url_template.render(context)
     # Replace the template variables with the context values.
     return template.render(context)
 

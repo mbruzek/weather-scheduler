@@ -49,6 +49,34 @@ templates/monday
 templates/wednesday
 ```
 
+## Images
+
+One of the main motivations for this project is to automatically perform the
+tasks that someone else has to do weekly. The toughest part of scheduling the
+rides for our bicycle group is selecting a route on a map. There is a lot of
+different maps that already exist. The maps are named for the starting location
+and have the wind direction in the name, but beyond that the name seems random
+or arbitrary. I learned for the originator of this system that some maps of
+the same direction are different maximum distances based on how much daylight
+is available during that season.
+
+This script to be fully automatic the maps names would have to be normalized
+to include the wind direction and contain some kind of maximum distance or
+perhaps some "t-shirt sizes" (Small, Medium, Large) designation.
+
+http://images,com/BS_N_30minute_map.gif (short or small)
+http://images.com/BS_E_27minute_map.gif (short or small)
+http://images.com/BS_S_24minute_map.gif (short or small)
+http://images.com/BS_W_32minute_map.gif (short or small)
+http://images.com/BS_N_90minute_map.gif (medium)
+http://images.com/BS_E_93minute_map.gif (medium)
+http://images.com/BS_S_89minute_map.gif (medium)
+http://images.com/BS_W_91minute_map.gif (medium)
+http://images.com/BS_N_120minute_map.gif (long)
+http://images.com/BS_E_120minute_map.gif (long)
+http://images.com/BS_S_122minute_map.gif (long)
+http://images.com/BS_W_119minute_map.gif (long)
+
 ### Phase 1
 
 [X] Research the weather APIs to see which one provides what we need. Keep links

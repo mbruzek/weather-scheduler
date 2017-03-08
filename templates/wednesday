@@ -24,6 +24,6 @@ EZ riders go {{ ez_speed }} mph, covering {{ ez_distance }} miles before sunset.
 
 {{ comment }}
 
-{{ image }}
+http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BS_{{ wind_direction }}.gif
 
 {{ footer }}

@@ -36,7 +36,7 @@ the user for the options.
 If you know the options you want you can call the program with the flags.
 
 ```
-./weather_scheduler.py --day monday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe." --url http://photobucket.com/albums/Maps/{{ wind_direction }}.gif
+./weather_scheduler.py --day monday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe."
 
-./weather_scheduler.py --day wednesday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe." --url http://photobucket.com/albums/Maps/{{ wind_direction }}.gif
+./weather_scheduler.py --day wednesday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe."
 ```
