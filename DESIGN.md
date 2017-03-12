@@ -64,22 +64,22 @@ This script to be fully automatic the maps names would have to be normalized
 to include the wind direction and contain some kind of maximum distance or
 perhaps some "t-shirt sizes" (Small, Medium, Large) designation.
 
-http://images,com/BS_N_30minute_map.gif (short or small)
-http://images.com/BS_E_27minute_map.gif (short or small)
-http://images.com/BS_S_24minute_map.gif (short or small)
-http://images.com/BS_W_32minute_map.gif (short or small)
-http://images.com/BS_N_90minute_map.gif (medium)
-http://images.com/BS_E_93minute_map.gif (medium)
-http://images.com/BS_S_89minute_map.gif (medium)
-http://images.com/BS_W_91minute_map.gif (medium)
-http://images.com/BS_N_120minute_map.gif (long)
-http://images.com/BS_E_120minute_map.gif (long)
-http://images.com/BS_S_122minute_map.gif (long)
-http://images.com/BS_W_119minute_map.gif (long)
+http://images.com/BS_N_30minute_map.gif (short or small)  
+http://images.com/BS_E_27minute_map.gif (short or small)  
+http://images.com/BS_S_24minute_map.gif (short or small)  
+http://images.com/BS_W_32minute_map.gif (short or small)  
+http://images.com/BS_N_90minute_map.gif (medium)  
+http://images.com/BS_E_93minute_map.gif (medium)  
+http://images.com/BS_S_89minute_map.gif (medium)  
+http://images.com/BS_W_91minute_map.gif (medium)  
+http://images.com/BS_N_120minute_map.gif (long)  
+http://images.com/BS_E_120minute_map.gif (long)  
+http://images.com/BS_S_122minute_map.gif (long)  
+http://images.com/BS_W_119minute_map.gif (long)  
 
 ### Phase 1
 
-[X] Research the weather APIs to see which one provides what we need. Keep links
+- [X] Research the weather APIs to see which one provides what we need. Keep links
 to documentation in RESEARCH.md so when the APIs break or more functionality is
 needed the information is available.
 
@@ -88,28 +88,28 @@ hourly data.
 
 ### Phase 2
 
-[X] Implement simple requests to gather the weather information.
+- [X] Implement simple requests to gather the weather information.
 
-* Using the requests Python package to issue simple HTTP GET commands.
-* Parsing the JSON is the hardest part, saved JSON in the `examples` directory.
+    * Using the requests Python package to issue simple HTTP GET commands.
+    * Parsing the JSON is the hardest part, saved JSON in the `examples` directory.
 
 ### Phase 3
 
-[X] Make the system work from the command line with replaceable credentials that
+- [X] Make the system work from the command line with replaceable credentials that
 are not hard coded.
 
-* Both command line and interactive are supported.
+    * Both command line and interactive are supported.
 
 ### Phase 4
 
-Look into where to run this tool, likely a Raspberry Pi or something cheap
+- [ ] Look into where to run this tool, likely a Raspberry Pi or something cheap
 and low powered that can run for a long time unattended.
 
 ### Phase 5
 
-Schedule the tool to run every night and post information to the group/forum or
+- [ ] Schedule the tool to run every night and post information to the group/forum or
 email.
 
 ### Phase6
 
-Release to production, maintain the tool by fixing bugs and adding features.
+- [ ] Release to production, maintain the tool by fixing bugs and adding features.
