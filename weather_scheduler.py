@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-'''
+"""
 weather_scheduler is Python code to gather weather data and schedule events.
 
 Copyright 2016 Matthew Bruzek
@@ -16,7 +16,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-'''
+"""
 
 import argparse
 import datetime
@@ -60,7 +60,7 @@ WEEK = {'monday': 0,
 
 
 def command_line():
-    '''The function to parse the arguments from the command line.'''
+    """The function to parse the arguments from the command line."""
     try:
         parser = argparse.ArgumentParser(description=DESCRIPTION)
         parser.add_argument('-c', '--context',
@@ -82,12 +82,13 @@ def command_line():
                              arguments.location,
                              start))
     except:
+        print('An exception occurred parsing the command-line arguments.')
         print(traceback.print_exc())
         exit(1)
 
 
 def interactive():
-    '''Interactively prompt the user for required values.'''
+    """Interactively prompt the user for required values."""
     options = {}
     try:
         options['context'] = prompt(CONTEXT)
@@ -108,8 +109,8 @@ def interactive():
 
 
 def split_kv_string(string):
-    '''Split the string on commas and then split the remaining elements on
-    equal sign to create a dict of key value pairs.'''
+    """Split the string on commas and then split the remaining elements on
+    equal sign to create a dict of key and value pairs."""
     dictionary = {}
     # Are there any commas in the string?
     if ',' in string:
@@ -124,8 +125,8 @@ def split_kv_string(string):
 
 
 def prompt(message, default=None):
-    '''Prompt the user for a value. Apply a default value if the user enters
-    empty string.'''
+    """Prompt the user for a value. Apply a default value if the user enters
+    empty string."""
     if default:
         return input('{0} [{1}]: '.format(message, default)) or default
     else:
@@ -133,7 +134,7 @@ def prompt(message, default=None):
 
 
 def get_datetime(day, time):
-    '''Return a date object for the specified english weekday day and time.'''
+    """Return a date object for the specified english weekday day and time."""
     # Normalize the english day to lower case.
     day = day.lower()
     # Get the target weekday number.
@@ -145,7 +146,7 @@ def get_datetime(day, time):
     today_weekday = NOW.weekday()
 
     target = None
-    # The target day is today if  days match and it is before the target time.
+    # The target day is today if days match and it is before the target time.
     if day_weekday == today_weekday and NOW.time() < time:
         target = today
     elif day_weekday > today_weekday:
@@ -160,8 +161,8 @@ def get_datetime(day, time):
 
 
 def get_template(day):
-    '''Get template for the specified day by name, raise an exception if the
-    file does not exist for the day specified.'''
+    """Get template for the specified day by name, an exception is thrown 
+    if the file does not exist for the day specified."""
     template_file = 'templates/{0}'.format(day.lower())
     with open(template_file, 'r') as template_data:
         template_string = template_data.read()
@@ -169,11 +170,12 @@ def get_template(day):
 
 
 def get_weather(key, location, target_date):
-    '''Return the forcast and astronomy data using the Weather Underground
-    API key.'''
+    """Return the forcast and astronomy data using the Weather Underground
+    API key, location and target date."""
     astronomy_url = 'http://api.wunderground.com/api/{0}/astronomy/q/{1}.json'
     astronomy_data = {}
     try:
+        # Get the astronomy data for the location.
         response = requests.get(astronomy_url.format(key, location))
         if response.status_code != 200:
             message = 'The HTTP response code was not OK for {0}'
@@ -187,7 +189,7 @@ def get_weather(key, location, target_date):
         if 'sun_phase' in response.json():
             astronomy_data = response.json()
         else:
-            raise ValueError('The data does not contain sun_phase!')
+            raise ValueError('The astronomy data does not contain sun_phase!')
     except:
         print('An error occurred getting astronomy data.')
         print(traceback.print_exc())
@@ -208,16 +210,16 @@ def get_weather(key, location, target_date):
         if 'hourly_forecast' in response.json():
             hourly10day_data = response.json()
         else:
-            raise ValueError('The data does not contain hourly_forecast!')
+            raise ValueError('The hourly data does not contain hourly_forecast!')
     except:
-        print('An eror occurred getting the hourly10day data.')
+        print('An error occurred getting the hourly10day data.')
         print(traceback.print_exc())
 
     return astronomy_data, hourly10day_data
 
 
 def update_context(context, target_datetime, astronomy_data, hourly10day_data):
-    '''Update context with the weather data for the target date and time.'''
+    """Update context with the weather data for the target date and time."""
     context['event_time'] = target_datetime.time().strftime('%l:%M %p')
     context['event_date'] = target_datetime.strftime('%B %d, %Y')
     context['event_day'] = target_datetime.strftime('%A')
@@ -232,7 +234,9 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
         # Calculate the daylight in minutes.
         minutes_of_daylight = delta.total_seconds() / 60
         context['daylight'] = minutes_of_daylight
+        # Calculate the hours of daylight.
         hours_of_daylight = minutes_of_daylight / 60
+        context['hours_of_daylight'] = hours_of_daylight
         miles = '%0.2f' % (hours_of_daylight * SPEED['a_plus_speed'])
         context['a_plus_distance'] = miles
         miles = '%0.2f' % (hours_of_daylight * SPEED['a_speed'])
@@ -277,8 +281,8 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
 
 
 def schedule_event(context, day, key, location, time):
-    '''Use the key to retrieve the weather information for the specified day
-    and return the appropriate template using the context.'''
+    """Use the key to retrieve the weather information for the specified day
+    and return the appropriate template using the context."""
     # Get the datetime object for the target day and time.
     target = get_datetime(day, time)
     # Call the Weather Underground API to get the JSON data for the date.
