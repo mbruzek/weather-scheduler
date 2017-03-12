@@ -161,7 +161,7 @@ def get_datetime(day, time):
 
 
 def get_template(day):
-    """Get template for the specified day by name, an exception is thrown 
+    """Get template for the specified day by name, an exception is thrown
     if the file does not exist for the day specified."""
     template_file = 'templates/{0}'.format(day.lower())
     with open(template_file, 'r') as template_data:
@@ -263,18 +263,38 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
            forecast_time['hour'] == str(target_datetime.hour):
             # Get the values for this matching time and day.
             context['condition'] = forecast['condition']
+            context['dewpoint_english'] = forecast['dewpoint']['english']
+            context['dewpoint_metric'] = forecast['dewpoint']['metric']
+            context['feelslike_english'] = forecast['feelslike']['english']
+            context['feelslike_metric']  = forecast['feelslike']['metric']
+            context['forecast_time_date'] = forecast_time['pretty']
+            context['heatindex_english'] = forecast['heatindex']['english']
+            context['heatindex_metric'] = forecast['heatindex']['metric']
             context['humidity'] = forecast['humidity']
+            # mslp = mean sea-level pressure, the barometric pressure reduced
+            # to sea level.
+            context['mean_sea_level_pressure'] = forecast['mslp']
+            # Sky is the percent of cloud cover 100 is cloudy, 50 is partially.
+            context['percent_cloud_cover'] = forecast['sky']
             # POP stands for Probability of Precipitation. Probability of
             # precipitation refers to the percent chance that a specific
             # location will receive measurable precipitation.
-            context['precipitation_percent'] = forecast['pop']
-            context['forecast_time_date'] = forecast_time['pretty']
-            context['temp_english'] = forecast['temp']['english']
-            context['temp_metric'] = forecast['temp']['metric']
-            context['wind_speed'] = forecast['wspd']['english']
+            context['probability_of_precipitation'] = forecast['pop']
+            # qpf = Quantitative precipitation forecast.
+            context['quantitative_precipitation'] = forecast['qpf']
+            context['snow_english'] = forecast['snow']['english']
+            context['snow_metric'] = forecast['snow']['metric']
+            context['temperature_english'] = forecast['temp']['english']
+            context['temperature_metric'] = forecast['temp']['metric']
+            context['ultraviolet_index'] = forecast['uvi']
+            # wx is the weather condition.
+            context['weather_condition'] = forecast['wx']
+            context['wind_speed_english'] = forecast['wspd']['english']
+            context['wind_speed_metric'] = forecast['wspd']['metric']
             context['wind_direction'] = forecast['wdir']['dir']
             context['wind_degrees'] = forecast['wdir']['degrees']
-            context['windchill'] = forecast['windchill']['english']
+            context['windchill_english'] = forecast['windchill']['english']
+            context['windchill_metric'] = forecast['windchill']['metric']
             break
 
     return context

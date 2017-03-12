@@ -2,10 +2,10 @@ Event starts {{ event_time }} on {{ event_day }} {{ event_date }}
 
 {{ event_day }}, {{ forecast_time_date }} hourly forecast for {{ location }}:
 
-{{ condition }} with a temperature of {{ temp_english }} F / {{ temp_metric }} C.
+{{ condition }} with a temperature of {{ temperature_english }} F / {{ temperature_metric }} C.
 
-Humidity {{ humidity }} with a probability of precipitation at {{ precipitation_percent }}%.
+Humidity {{ humidity }} with a probability of precipitation at {{ probability_of_precipitation }}%.
 
-Wind from the {{ wind_direction }} with a speed of {{ wind_speed }} mph.
+Wind from the {{ wind_direction }} with a speed of {{ wind_speed_english }} mph.
 
 Sunset is {{ sunset_time }}, that leaves {{ daylight }} minutes of daylight before sunset.

@@ -8,11 +8,11 @@ First group leaves at {{ event_time }} sharp! All groups will be leaving in two 
 
 {{ event_day }}, {{ forecast_time_date }} hourly forecast for {{ location }}:
 
-{{ condition }} with a temperature of {{ temp_english }} F / {{ temp_metric }} C.
+{{ condition }} with a temperature of {{ temperature_english }} F / {{ temperature_metric }} C.
 
-Wind from the {{ wind_direction }} with a speed of {{ wind_speed }} mph.
+Wind from the {{ wind_direction }} with a speed of {{ wind_speed_english }} mph.
 
-Sunset is {{ sunset_time }}, that is {{ daylight }} minutes of daylight.
+Sunset is {{ sunset_time }}, that leaves {{ daylight }} minutes of daylight for the ride.
 {% if daylight > 0 %}
 A+ group rides at {{ a_plus_speed }} mph, covering {{ a_plus_distance }} miles before sunset.
 A group rides at {{ a_speed }} mph, covering {{ a_distance }} miles before sunset.
