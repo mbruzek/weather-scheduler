@@ -37,16 +37,10 @@ DEFAULT_LOCATION = 'MN/Rochester'
 DEFAULT_URL = 'http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BS{{ wind_direction }}.gif'  # noqa
 DESCRIPTION = 'Request weather forecast data from the Internet and render ' \
               'an event template.'
-DEBUG = False
+DEBUG = True
 KEY = 'The weather underground key to use when making the API requests'
 LOCATION = 'The location to query for the weather forecast'
 NOW = datetime.datetime.now()  # The current date with time.
-SPEED = {'a_plus_speed': 21.0,
-         'a_speed': 20,
-         'b_speed': 19,
-         'c_speed': 17,
-         'd_speed': 15,
-         'ez_speed': 13}
 TIME = 'The time of the event in "HH:MM AM|PM" format'
 URL = 'The url to the image to use for the image of the event. Hint you can ' \
       'use context variables in the url'
@@ -231,28 +225,16 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
     if sunset >= target_datetime.time():
         delta = datetime.datetime.combine(date.today(), sunset) - \
                 datetime.datetime.combine(date.today(), target_datetime.time())
+        seconds = delta.total_seconds()
+        context['daylight_in_seconds'] = seconds
         # Calculate the daylight in minutes.
-        minutes_of_daylight = delta.total_seconds() / 60
-        context['daylight'] = minutes_of_daylight
+        context['daylight_in_minutes'] = seconds / 60
         # Calculate the hours of daylight.
-        hours_of_daylight = minutes_of_daylight / 60
-        context['hours_of_daylight'] = hours_of_daylight
-        miles = '%0.2f' % (hours_of_daylight * SPEED['a_plus_speed'])
-        context['a_plus_distance'] = miles
-        miles = '%0.2f' % (hours_of_daylight * SPEED['a_speed'])
-        context['a_distance'] = miles
-        miles = '%0.2f' % (hours_of_daylight * SPEED['b_speed'])
-        context['b_distance'] = miles
-        miles = '%0.2f' % (hours_of_daylight * SPEED['c_speed'])
-        context['c_distance'] = miles
-        miles = '%0.2f' % (hours_of_daylight * SPEED['d_speed'])
-        context['d_distance'] = miles
-        miles = '%0.2f' % (hours_of_daylight * SPEED['ez_speed'])
-        context['ez_distance'] = miles
-        # Add all the speeds to the context object.
-        context.update(SPEED)
+        context['daylight_in_hours'] = seconds / 60 / 60
     else:
-        context['daylight'] = 0
+        context['daylight_in_seconds'] = 0
+        context['daylight_in_minutes'] = 0
+        context['daylight_in_hours'] = 0
 
     # Iterate over the entire hourly_forcast array.
     for a in range(0, len(hourly10day_data['hourly_forecast'])):

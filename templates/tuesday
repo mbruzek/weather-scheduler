@@ -8,4 +8,4 @@ Humidity {{ humidity }} with a probability of precipitation at {{ probability_of
 
 Wind from the {{ wind_direction }} with a speed of {{ wind_speed_english }} mph.
 
-Sunset is {{ sunset_time }}, that leaves {{ daylight }} minutes of daylight before sunset.
+Sunset is {{ sunset_time }}, that leaves {{ daylight_in_minutes }} minutes of daylight before sunset.
