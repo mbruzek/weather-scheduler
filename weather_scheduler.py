@@ -37,7 +37,7 @@ DEFAULT_LOCATION = 'MN/Rochester'
 DEFAULT_URL = 'http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BS{{ wind_direction }}.gif'  # noqa
 DESCRIPTION = 'Request weather forecast data from the Internet and render ' \
               'an event template.'
-DEBUG = True
+DEBUG = False
 KEY = 'The weather underground key to use when making the API requests'
 LOCATION = 'The location to query for the weather forecast'
 NOW = datetime.datetime.now()  # The current date with time.
