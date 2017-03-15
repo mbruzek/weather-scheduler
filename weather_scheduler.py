@@ -24,6 +24,8 @@ import requests
 import sys
 import traceback
 
+import email_utilities
+
 from datetime import date
 from datetime import time
 from datetime import timedelta
@@ -34,7 +36,6 @@ CONTEXT = 'Additional comma separated key=value pairs to use as context'
 DAY = 'The day of the week to use weather data for: \n' \
       'monday|tuesday|wednesday|thursday|friday|saturday|sunday'
 DEFAULT_LOCATION = 'MN/Rochester'
-DEFAULT_URL = 'http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BS{{ wind_direction }}.gif'  # noqa
 DESCRIPTION = 'Request weather forecast data from the Internet and render ' \
               'an event template.'
 DEBUG = False
@@ -54,9 +55,10 @@ WEEK = {'monday': 0,
 
 
 def command_line():
-    """The function to parse the arguments from the command line."""
+    """Parse the arguments from the command line."""
     try:
         parser = argparse.ArgumentParser(description=DESCRIPTION)
+        # Arguments required to schedule an event.
         parser.add_argument('-c', '--context',
                             help='{0} [{1}]'.format(CONTEXT, None))
         parser.add_argument('-d', '--day', default='monday',
@@ -67,14 +69,22 @@ def command_line():
                             help='{0} [{1}]'.format(LOCATION, None))
         parser.add_argument('-t', '--time', default='6:00 PM',
                             help='{0} [{1}]'.format(TIME, '6:00 PM'))
-        arguments = parser.parse_args()
+        arguments, extra = parser.parse_known_args()
+
         # Parse the time HH:MM AM|PM from the command line.
         start = datetime.datetime.strptime(arguments.time, '%I:%M %p').time()
-        print(schedule_event(split_kv_string(arguments.context),
-                             arguments.day,
-                             arguments.key,
-                             arguments.location,
-                             start))
+        event_text = schedule_event(split_kv_string(arguments.context),
+                                    arguments.day,
+                                    arguments.key,
+                                    arguments.location,
+                                    start)
+        print(event_text)
+        # TODO Write event text to file, to be read by second step
+        # TODO Output an image path and send to second step
+        sys.argv.append('--text')
+        sys.argv.append(event_text)
+        email_utilities.command_line()
+
     except:
         print('An exception occurred parsing the command-line arguments.')
         print(traceback.print_exc())
@@ -83,8 +93,8 @@ def command_line():
 
 def interactive():
     """Interactively prompt the user for required values."""
-    options = {}
     try:
+        options = {}
         options['context'] = prompt(CONTEXT)
         options['day'] = prompt(DAY, 'monday')
         options['key'] = prompt(KEY)
@@ -92,11 +102,13 @@ def interactive():
         time = prompt(TIME, '6:00 PM')
         # Parse the time HH:MM AM|PM from user input.
         options['time'] = datetime.datetime.strptime(time, '%I:%M %p').time()
-        print(schedule_event(split_kv_string(options['context']),
-                             options['day'],
-                             options['key'],
-                             options['location'],
-                             options['time']))
+        event_text = schedule_event(split_kv_string(options['context']),
+                                    options['day'],
+                                    options['key'],
+                                    options['location'],
+                                    options['time'])
+        print(event_text)
+        email_utilities.interactive(text=event_text)
     except (KeyboardInterrupt, SystemExit) as e:
         print('\n\nUser has quit, exiting program.')
         exit(2)
