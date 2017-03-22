@@ -1,0 +1,7 @@
+language: python
+python:
+  - '3.5'
+# The command to install dependencies.
+install: 'pip install -r requirements.txt'
+# The command to run the tests.
+script: pytest tests/
