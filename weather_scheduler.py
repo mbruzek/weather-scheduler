@@ -216,7 +216,7 @@ def get_weather(key, location, target_date):
         if 'hourly_forecast' in response.json():
             hourly10day_data = response.json()
         else:
-            raise ValueError('The hourly data does not contain hourly_forecast!')
+            raise ValueError('Hourly data does not contain hourly_forecast!')
     except:
         print('An error occurred getting the hourly10day data.')
         print(traceback.print_exc())
@@ -260,7 +260,7 @@ def update_context(context, target_datetime, astronomy_data, hourly10day_data):
             context['dewpoint_english'] = forecast['dewpoint']['english']
             context['dewpoint_metric'] = forecast['dewpoint']['metric']
             context['feelslike_english'] = forecast['feelslike']['english']
-            context['feelslike_metric']  = forecast['feelslike']['metric']
+            context['feelslike_metric'] = forecast['feelslike']['metric']
             context['forecast_time_date'] = forecast_time['pretty']
             context['heatindex_english'] = forecast['heatindex']['english']
             context['heatindex_metric'] = forecast['heatindex']['metric']

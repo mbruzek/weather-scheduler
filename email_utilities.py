@@ -46,21 +46,21 @@ def command_line():
     try:
         parser = argparse.ArgumentParser(description=DESCRIPTION)
         parser.add_argument('-f', '--fromaddress',
-                             help='{0} [{1}]'.format(FROM, None))
+                            help='{0} [{1}]'.format(FROM, None))
         parser.add_argument('-r', '--recipients',
-                             help='{0} [{1}]'.format(RECIPIENTS, None))
+                            help='{0} [{1}]'.format(RECIPIENTS, None))
         parser.add_argument('--subject',
-                             help='{0} [{1}]'.format(SUBJECT, None))
+                            help='{0} [{1}]'.format(SUBJECT, None))
         parser.add_argument('-i', '--image',
-                             help='{0} [{1}]'.format(IMAGE, None))
+                            help='{0} [{1}]'.format(IMAGE, None))
         parser.add_argument('-s', '--server',
-                             help='{0} [{1}]'.format(SERVER, None))
+                            help='{0} [{1}]'.format(SERVER, None))
         parser.add_argument('--text',
-                             help='{0} [{1}]'.format(TEXT, None))
+                            help='{0} [{1}]'.format(TEXT, None))
         parser.add_argument('-p', '--port', type=int,
-                             help='{0} [{1}]'.format(PORT, None))
+                            help='{0} [{1}]'.format(PORT, None))
         parser.add_argument('-u', '--username',
-                             help='{0} [{1}]'.format(USERNAME, None))
+                            help='{0} [{1}]'.format(USERNAME, None))
         arguments, extra = parser.parse_known_args()
 
         message = get_message(arguments.fromaddress,
