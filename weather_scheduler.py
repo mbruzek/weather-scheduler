@@ -42,6 +42,7 @@ DEBUG = False
 KEY = 'The weather underground key to use when making the API requests'
 LOCATION = 'The location to query for the weather forecast'
 NOW = datetime.datetime.now()  # The current date with time.
+OUTPUT = 'The path and name of the file to store the output'
 TIME = 'The time of the event in "HH:MM AM|PM" format'
 URL = 'The url to the image to use for the image of the event. Hint you can ' \
       'use context variables in the url'
@@ -67,6 +68,8 @@ def command_line():
                             help='{0} [{1}]'.format(KEY, None))
         parser.add_argument('-l', '--location', default=DEFAULT_LOCATION,
                             help='{0} [{1}]'.format(LOCATION, None))
+        parser.add_argument('-o', '--output',
+                            help='{0} [{1}]'.format(OUTPUT, None))
         parser.add_argument('-t', '--time', default='6:00 PM',
                             help='{0} [{1}]'.format(TIME, '6:00 PM'))
         arguments, extra = parser.parse_known_args()
@@ -78,8 +81,12 @@ def command_line():
                                     arguments.key,
                                     arguments.location,
                                     start)
-        print(event_text)
-        # TODO Write event text to file, to be read by second step
+        if arguments.output:
+            with open(arguments.output, 'w') as writer:
+                writer.write(event_text)
+        else:
+            print(event_text)
+
         # TODO Output an image path and send to second step
         sys.argv.append('--text')
         sys.argv.append(event_text)

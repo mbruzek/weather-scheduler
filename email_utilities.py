@@ -20,6 +20,7 @@ limitations under the License.
 
 import argparse
 import getpass
+import os
 import smtplib
 import sys
 import traceback
@@ -82,29 +83,35 @@ def command_line():
         exit(2)
 
 
-def get_message(from_address, recipients, subject, text, image_path):
+def get_message(from_address, recipients, subject, text, image):
     """Return a MIME message with both text and image parts.
     :param str from_address: The string email address to send from.
     :param list recipients: The comma separated addresses to send the email to.
     :param str subject: The string subject of the email message.
-    :param str text: The main text of the email message.
-    :param str image_path: The string path to a MIME supported image file."""
+    :param str text: The main path to the text file, or the text itself.
+    :param str image: The string path to a MIME supported image file."""
     # Create a MIME multipart message of text and image.
     message = MIMEMultipart()
     message['Subject'] = subject
     message['From'] = from_address
     message['To'] = recipients
-    # Create a MIME text message object from the text string.
-    content = MIMEText(text)
+
+    if os.path.isfile(text):
+        with open(text, 'r') as reader:
+            # Create a MIME text object from the contents of the file.
+            content = MIMEText(reader.read())
+    else:
+        # Create a MIME text message object from the text string.
+        content = MIMEText(text)
     # Attach the MIMEText to the MIMEMultipart message.
     message.attach(content)
-    if image_path:
+    if image and os.path.isfile(image):
         # Read the image as binary date from the path.
-        with open(image_path, 'rb') as reader:
+        with open(image, 'rb') as reader:
             # Create a MIME image message object that contains the raw image.
-            image = MIMEImage(reader.read())
+            mime_image = MIMEImage(reader.read())
             # Attach the MIMEImage to the MIMEMultipart message.
-            message.attach(image)
+            message.attach(mime_image)
     return message
 
 
