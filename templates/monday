@@ -14,16 +14,18 @@ Wind from the {{ wind_direction }} with a speed of {{ wind_speed_english }} mph.
 
 Sunset is {{ sunset_time }}, that leaves {{ daylight_in_minutes }} minutes of daylight for the ride.
 {% if daylight_in_hours > 0 %}
-A+ group rides at 21 mph, covering {{ "{:.2f}".format(daylight_in_hours * 21) }} miles before sunset.
-A group rides at 20 mph, covering {{ "{:.2f}".format(daylight_in_hours * 20) }} miles before sunset.
-B group rides at 19 mph, covering {{ "{:.2f}".format(daylight_in_hours * 19) }} miles before sunset.
-C group rides at 17 mph, covering {{ "{:.2f}".format(daylight_in_hours * 17) }} miles before sunset.
-D group rides at 15 mph, covering {{ "{:.2f}".format(daylight_in_hours * 15) }} miles before sunset.
-EZ riders go 13 mph, covering {{ "{:.2f}".format(daylight_in_hours * 13) }} miles before sunset.
+If the A+ group rides at 21 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 21) }} miles before sunset.
+If the A group rides at 20 mph average,  they could cover {{ "{:.2f}".format(daylight_in_hours * 20) }} miles before sunset.
+If the B group rides at 19 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 19) }} miles before sunset.
+If the C group rides at 17 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 17) }} miles before sunset.
+If the D group rides at 15 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 15) }} miles before sunset.
+If the EZ riders go 13 mph average they could cover {{ "{:.2f}".format(daylight_in_hours * 13) }} miles before sunset.
+
+* The averages are just a rough gauge, the actual ride distances may be longer or shorter than the averages posted here.
 {% endif %}
 
 {{ comment }}
 
-http://i118.photobucket.com/albums/o117/dave6167/Bicycle%20Sports%20Maps/BV_{{ wind_direction }}.gif
+http://i118.photobucket.com/albums/o117/dave6167/Bamber%20Valley%20Maps/BV{{ wind_direction }}.gif
 
 {{ footer }}
