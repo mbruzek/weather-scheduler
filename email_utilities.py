@@ -32,7 +32,7 @@ from email.mime.multipart import MIMEMultipart
 
 DESCRIPTION = 'Methods to send an email from a Python program.'
 FROM = 'The string email address to send the email from'
-IMAGE = 'The string path to the image to attach to the email'
+IMAGE = 'The string path to an image to attach to the email'
 PORT = 'The port to use when connecting to the SMTP server'
 PASSWORD = 'The password on the SMTP server'
 RECIPIENTS = 'The comma separated email addresses to send the email to'
@@ -62,6 +62,8 @@ def command_line():
                             help='{0} [{1}]'.format(PORT, None))
         parser.add_argument('-u', '--username',
                             help='{0} [{1}]'.format(USERNAME, None))
+        parser.add_argument('--password',
+                            help='{0} [{1}]'.format(PASSWORD, None))
         arguments, extra = parser.parse_known_args()
 
         message = get_message(arguments.fromaddress,
@@ -70,7 +72,11 @@ def command_line():
                               arguments.text,
                               arguments.image)
 
-        password = getpass.getpass(PASSWORD + ': ')
+        password = arguments.password
+        if not password:
+            password = os.getenv('SMTP_PASSWORD')
+            if not password:
+                password = getpass.getpass(PASSWORD + ': ')
 
         send_tls_message(arguments.server,
                          arguments.port,
