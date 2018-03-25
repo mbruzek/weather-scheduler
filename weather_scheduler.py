@@ -20,6 +20,7 @@ limitations under the License.
 
 import argparse
 import datetime
+import os
 import requests
 import sys
 import traceback
@@ -74,11 +75,17 @@ def command_line():
                             help='{0} [{1}]'.format(TIME, '6:00 PM'))
         arguments, extra = parser.parse_known_args()
 
+        key = arguments.key
+        if not key:
+            key = os.getenv('KEY')
+            if not key:
+                key = prompt(KEY + ': ')
+
         # Parse the time HH:MM AM|PM from the command line.
         start = datetime.datetime.strptime(arguments.time, '%I:%M %p').time()
         event_text = schedule_event(split_kv_string(arguments.context),
                                     arguments.day,
-                                    arguments.key,
+                                    key,
                                     arguments.location,
                                     start)
         if arguments.output:
