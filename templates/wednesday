@@ -77,6 +77,7 @@ Miles	Route					Printable Image
 {% else %}
 No routes for {{ wind_direction }}
 {% endif %}
-You can download the images to a GPS or a phone or print the image if you wish.
+
+You can download the routes to a GPS or a phone, clicking on the image link will enlarge for printing.
 
 {{ footer }}

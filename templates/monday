@@ -28,7 +28,7 @@ If the D group rides at 15 mph average, they could cover {{ "{:.2f}".format(dayl
 {{ comment }}
 
 Miles	Route					Printable Image
------ 	----- 					---------------
+-----	-----					---------------
 {% if wind_direction in ["N", "NNE"] %}
   23	https://ridewithgps.com/routes/26989091	https://ridewithgps.com/routes/full/26989091.png
   27	https://ridewithgps.com/routes/26989111	https://ridewithgps.com/routes/full/26989111.png
@@ -74,6 +74,6 @@ Miles	Route					Printable Image
 No routes for {{ wind_direction }}
 {% endif %}
 
-You can download the routes to a GPS or a phone or click on the image to enlarge.
+You can download the routes to a GPS or a phone, clicking on the image link will enlarge for printing.
 
 {{ footer }}
