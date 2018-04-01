@@ -1,6 +1,10 @@
-# Weather Event Scheduler
+# Weather Scheduler
 
 An automated solution for scheduling events based on the weather forecast.
+
+The weather scheduler program gets weather information for a specific location,
+date and time. The weather data can be used in event templates that can be
+emailed to a group of people.
 
 ## Problem
 The local bicycle club has weekly rides on Monday and Wednesday nights. Each
@@ -9,8 +13,8 @@ temperature and sunset time to schedule the rides. Scheduling the weekly group
 rides is a manual task that takes a human time to complete each week.
 
 ## Solution
-Create an automated script that can gather the on-line information,
-compute the route and post the ride.
+Create an automated script that can gather the on-line weather information,
+create the event text and email the information out to a group.
 
 ## Information
 
