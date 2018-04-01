@@ -34,13 +34,13 @@ The program can be run on the command line without any flags and will prompt
 the user for the options.
 
 ```
-./weather_scheduler.py
+weather_scheduler/weather_scheduler.py
 ```
 
 If you know the options you want you can call the program with the flags.
 
 ```
-./weather_scheduler.py --day monday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe."
+weather_scheduler/weather_scheduler.py --day monday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe."
 
-./weather_scheduler.py --day wednesday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe."
+weather_scheduler/weather_scheduler.py --day wednesday --time '6:00 PM' --key WU_KEY --location MN/Rochester --context "comment=It is getting dark fast so bring a light.,footer=Ride safe."
 ```
