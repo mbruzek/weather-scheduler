@@ -6,7 +6,7 @@ from os import path
 # Have to append ../../ to the system path because this test is not a module.
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
-import weather_scheduler
+import weather_scheduler.weather_scheduler as weather_scheduler
 
 
 ASTRONOMY = '''

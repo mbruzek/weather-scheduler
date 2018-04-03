@@ -14,7 +14,7 @@ setup(
     author='Matthew Bruzek',
     author_email='mbruzek@gmail.com',
     keywords='python weather schedule recurring email event',
-    packages=find_packages(),
+    packages=find_packages(exclude=['examples', 'templates', 'tests']),
     install_requires=['Jinja2', 'requests'],
     extras_require={'test': ['pytest']},
     project_urls={
