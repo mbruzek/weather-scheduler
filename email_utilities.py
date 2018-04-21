@@ -105,10 +105,10 @@ def get_message(from_address, recipients, subject, text, image):
     if os.path.isfile(text):
         with open(text, 'r') as reader:
             # Create a MIME text object from the contents of the file.
-            content = MIMEText(reader.read())
+            content = MIMEText(reader.read(), 'html')
     else:
         # Create a MIME text message object from the text string.
-        content = MIMEText(text)
+        content = MIMEText(text, 'html')
     # Attach the MIMEText to the MIMEMultipart message.
     message.attach(content)
     if image and os.path.isfile(image):

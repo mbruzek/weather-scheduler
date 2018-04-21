@@ -183,7 +183,7 @@ def get_datetime(day, time):
 def get_template(day):
     """Get template for the specified day by name, an exception is thrown
     if the file does not exist for the day specified."""
-    template_file = 'templates/{0}'.format(day.lower())
+    template_file = 'templates/{0}.html.j2'.format(day.lower())
     with open(template_file, 'r') as template_data:
         template_string = template_data.read()
     return template_string

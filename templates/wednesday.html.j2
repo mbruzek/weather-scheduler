@@ -1,0 +1,216 @@
+<h1>RASC Wednesday night ride</h1>
+
+<p>
+Ride starts from Bicycle Sports <br />
+1400 5th Place NW <br />
+Rochester, MN <br />
+</p>
+<p>
+First group leaves at {{ event_time }} sharp! All groups will be leaving in two minute intervals after {{ event_time }}.
+</p>
+<p>
+{{ event_day }}, {{ forecast_time_date }} hourly forecast for {{ location }}:
+</p>
+<p>
+{{ condition }} with a temperature of {{ temperature_english }} F / {{ temperature_metric }} C.
+</p>
+<p>
+Wind from the {{ wind_direction }} with a speed of {{ wind_speed_english }} mph.
+</p>
+<p>
+Sunset is {{ sunset_time }}, that leaves {{ daylight_in_minutes }} minutes of daylight for the ride.
+</p>
+<p>
+{% if daylight_in_hours > 0 %}
+If the A group rides at 21 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 21) }} miles before sunset. <br />
+If the B+ group rides at 20 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 20) }} miles before sunset. <br />
+If the B group rides at 19 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 19) }} miles before sunset. <br />
+If the C group rides at 17 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 17) }} miles before sunset. <br />
+If the D group rides at 15 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 15) }} miles before sunset. <br />
+</p>
+<p>
+* The averages are just a rough gauge, the actual ride distances may be longer or shorter than the averages posted here.
+</p>
+{% endif %}
+<p>
+{{ comment }}
+</p>
+<table>
+<tr>
+<th> Route </th>
+<th> Printable Image </th>
+</tr>
+{% if wind_direction in ["N", "NNE"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26997648"> 25 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26997648.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26997709"> 46 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26997709.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26997694"> 56 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26997694.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26997727"> 63 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26997727.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["NE", "ENE"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057716"> 22 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057716.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057729"> 28 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057729.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057737"> 37 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057737.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057750"> 50 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057750.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057763"> 59 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057763.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["E", "ESE"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057613"> 24 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057613.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057619"> 38 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057619.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057631"> 44 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057631.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057661"> 51 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057661.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057655"> 56 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057655.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["SE", "SSE"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057545"> 21 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057545.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057542"> 30 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057542.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057558"> 37 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057558.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057570"> 40 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057570.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057574"> 48 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057574.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057593"> 56 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057593.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["S", "SSW"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27056687"> 25 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27056687.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057303"> 39 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057303.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057355"> 50 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057355.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/27057386"> 58 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/27057386.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["SW", "WSW"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999150"> 24 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999150.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999166"> 29 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999166.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999191"> 34 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999191.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999216"> 38 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999216.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999232"> 42 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999232.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["W", "WNW"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26998873"> 23 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26998873.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999059"> 29 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999059.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999047"> 33 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999047.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999077"> 43 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999077.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26999090"> 48 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26999090.png" height="285" width="285" /> </td>
+</tr>
+{% elif wind_direction in ["NW", "NNW"] %}
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26998301"> 25 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26998301.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26998316"> 29 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26998316.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26998326"> 40 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26998326.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26998347"> 45 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26998347.png" height="285" width="285" /> </td>
+</tr>
+<tr>
+<td> <a href="https://ridewithgps.com/routes/26998362"> 52 miles </a> </td>
+<td> <img src="https://ridewithgps.com/routes/full/26998362.png" height="285" width="285" /> </td>
+</tr>
+{% else %}
+<tr><td> No routes for {{ wind_direction }} </td><td> </td></tr>
+{% endif %}
+</table>
+<p>
+You can download the routes to a GPS or a phone, clicking on the image link will enlarge for printing.
+</p>
+<p>
+{{ footer }}
+</p>
