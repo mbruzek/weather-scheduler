@@ -22,11 +22,11 @@ Sunset is {{ sunset_time }}, that leaves {{ daylight_in_minutes }} minutes of da
 </p>
 <p>
 {% if daylight_in_hours > 0 %}
-If the A group rides at 21 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 21) }} miles before sunset. <br />
-If the B+ group rides at 20 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 20) }} miles before sunset. <br />
-If the B group rides at 19 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 19) }} miles before sunset. <br />
-If the C group rides at 17 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 17) }} miles before sunset. <br />
-If the D group rides at 15 mph average, they could cover {{ "{:.2f}".format(daylight_in_hours * 15) }} miles before sunset. <br />
+If you average <b>21 mph</b> then you will ride {{ "{:.2f}".format(daylight_in_hours * 21) }} miles before sunset. <br />
+If you average <b>20 mph</b> then you will ride {{ "{:.2f}".format(daylight_in_hours * 20) }} miles before sunset. <br />
+If you average <b>19 mph</b> then you will ride {{ "{:.2f}".format(daylight_in_hours * 19) }} miles before sunset. <br />
+If you average <b>17 mph</b> then you will ride {{ "{:.2f}".format(daylight_in_hours * 17) }} miles before sunset. <br />
+If you average <b>15 mph</b> then you will ride {{ "{:.2f}".format(daylight_in_hours * 15) }} miles before sunset. <br />
 </p>
 <p>
 * The averages are just a rough gauge, the actual ride distances may be longer or shorter than the averages posted here.
